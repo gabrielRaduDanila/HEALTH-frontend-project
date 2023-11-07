@@ -1,0 +1,98 @@
+.background-images {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.image1,
+.image2,
+.image3,
+.image4 {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.image1 {
+  background-image: url('../../assets/background-gray.svg');
+}
+
+.image2 {
+  background-image: url('../../assets/banana.svg');
+}
+
+.image3 {
+  background-image: url('../../assets/Strawberry.svg');
+}
+
+.image4 {
+  background-image: url('../../assets/leaves.svg');
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .image1 {
+    width: 652px;
+    height: 413px;
+    bottom: 0;
+    right: -270px;
+  }
+
+  .image2 {
+    width: 311px;
+    height: 271px;
+    bottom: 0;
+    right: 0;
+  }
+
+  .image3 {
+    width: 208px;
+    height: 203px;
+    bottom: 137px;
+    right: 10px;
+  }
+
+  .image4 {
+    width: 700px;
+    height: 500px;
+    bottom: 10px;
+    right: 142px;
+  }
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+  .image1 {
+    width: 776px;
+    height: 548px;
+    bottom: 0;
+    right: -270px;
+  }
+
+  .image2 {
+    width: 311px;
+    height: 271px;
+    bottom: 279px;
+    right: 0;
+  }
+
+  .image3 {
+    width: 208px;
+    height: 203px;
+    bottom: 0;
+    right: 0;
+  }
+
+  .image4 {
+    width: 626px;
+    height: 408px;
+    bottom: 113px;
+    right: 105px;
+    rotate: 260deg;
+  }
+}

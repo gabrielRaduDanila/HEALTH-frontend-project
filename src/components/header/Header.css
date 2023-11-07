@@ -1,0 +1,43 @@
+header {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #E0E0E0;
+}
+
+.header-logo {
+  width: 46px;
+  height: 44px;
+}
+
+.user-btns {
+  margin-left: auto;
+}
+
+.user-btn {
+  text-transform: uppercase;
+  color: #9B9FAA;
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 17px;
+  font-weight: 700;
+}
+
+.user-info {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.aplication-name {
+  font-size: 16px;
+  color: #212121;
+  text-transform: capitalize;
+}
+
+.orange-colored {
+  color: #FC842D
+}

@@ -1,0 +1,40 @@
+.user-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  margin-left: 15px;
+  gap: 15px
+}
+
+.user-message {
+  margin: 0;
+}
+
+.user-name {
+  color: blue;
+  font-weight: 600;
+}
+
+.logOut-btn {
+  background-color: #e53935;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.logOut-btn:hover {
+  background-color: #c62828;
+}
+
+.logOut-icon {
+  margin-left: 10px;
+  font-size: 16px;
+}

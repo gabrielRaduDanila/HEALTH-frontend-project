@@ -1,8 +1,8 @@
 import { Button, Result } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectErrorMessage } from 'features/auth/selectors';
-import { resetError } from 'features/auth/authSlice';
+import { selectErrorMessage } from '../../features/auth/selectors';
+import { resetError } from '../../features/auth/authSlice';
 
 const ErrorMessage = () => {
   const navigate = useNavigate();
@@ -10,14 +10,14 @@ const ErrorMessage = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="loading-container">
+    <div className='loading-container'>
       <Result
-        status="404"
-        title="ERROR"
+        status='404'
+        title='ERROR'
         subTitle={errorMessage}
         extra={
           <Button
-            type="primary"
+            type='primary'
             onClick={() => {
               dispatch(resetError());
               navigate(-1);

@@ -1,37 +1,43 @@
 import './Modal.css';
-import { useDispatch } from 'react-redux';
-import { closeModal } from 'features/modal/modalSlice';
-import { useModal } from 'hooks/useModal';
-import { deleteContact } from 'features/auth/operations';
+import '../home-page-form/HomePageForm.css';
+
+import ModalMobileMenu from '../modal-mobile-menu/ModalMobileMenu';
+import Header from '../header/Header';
+import { useDailyCalories } from '../../hooks/useDailyCalories';
+import { Link } from 'react-router-dom';
 
 const Modal = () => {
-  const dispatch = useDispatch();
-  const { contactName, id } = useModal();
+  const { neededCaloriesForDesiredWeight, nonRecCategories } =
+    useDailyCalories();
 
   return (
     <aside className='modal-container'>
       <div className='modal'>
-        <h4>Remove the {contactName} contact?</h4>
-        <div className='btn-container'>
-          <button
-            type='button'
-            className='btn confirm-btn'
-            onClick={() => {
-              dispatch(deleteContact(id));
-              dispatch(closeModal());
-            }}
-          >
-            confirm
-          </button>
-          <button
-            type='button'
-            className='btn clear-btn'
-            onClick={() => {
-              dispatch(closeModal());
-            }}
-          >
-            cancel
-          </button>
+        <Header />
+        <ModalMobileMenu />
+        <div className='modal-content'>
+          <h2 className='form-title'>
+            Your recommended daily calorie intake is
+          </h2>
+          <h3 className='calories'>
+            {neededCaloriesForDesiredWeight}{' '}
+            <span className='sub-text'> kcal</span>
+          </h3>
+          <div className='food-container'>
+            <h3 className='food-title'>Foods you should not eat</h3>
+            <ul className='food-list'>
+              {nonRecCategories.map((categ) => {
+                return (
+                  <li className='food-list-item' key={categ}>
+                    {categ}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <Link to='/users/register' className='submit-btn modal-btn'>
+            Start losing weight
+          </Link>
         </div>
       </div>
     </aside>

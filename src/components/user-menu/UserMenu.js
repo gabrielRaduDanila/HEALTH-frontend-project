@@ -1,25 +1,33 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'features/auth/selectors';
-import { logOut } from 'features/auth/operations';
+import { selectUser } from '../../features/auth/selectors';
+import { logOut } from '../../features/auth/operations';
 import './UserMenu.css';
-import { FiLogOut } from 'react-icons/fi';
+import {
+  setIsNotUserPage,
+  setIsNotLoggedIn,
+} from '../../features/auth/authSlice';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  let { name } = user;
+  if (name) {
+    name = name.split(/\s|-/)[0];
+  }
 
   return (
-    <div className="user-menu">
-      <p className="user-message">
-        Welcome, <span className="user-name">{user.name}</span>
-      </p>
+    <div className='user-menu'>
+      <p className='user-message'>{name}</p>
       <button
-        type="button"
-        className="logOut-btn"
-        onClick={() => dispatch(logOut())}
+        type='button'
+        className='logOut-btn'
+        onClick={() => {
+          dispatch(setIsNotUserPage());
+          dispatch(setIsNotLoggedIn());
+          dispatch(logOut());
+        }}
       >
-        Logout
-        <FiLogOut className="logOut-icon" />
+        Exit
       </button>
     </div>
   );

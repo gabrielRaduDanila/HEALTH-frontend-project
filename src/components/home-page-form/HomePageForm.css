@@ -111,6 +111,10 @@ input[type="number"]::-webkit-outer-spin-button {
   width: fit-content;
 }
 
+.calculator-title {
+  color: #212121 !important;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .home-page-form {
     width: 80%;
@@ -165,5 +169,7 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-left: 15px;
   }
 
-
+  .calculator-title {
+    margin-top: 30px;
+  }
 }

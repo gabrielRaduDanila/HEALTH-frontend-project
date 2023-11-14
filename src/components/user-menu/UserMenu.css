@@ -1,40 +1,66 @@
 .user-menu {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-  flex-grow: 1;
-  margin-left: 15px;
-  gap: 15px
+  gap: 30px;
+  justify-content: flex-end;
+  width: 100vw;
+  padding: 10px 20px;
+  background-color: #EFF1F3;
 }
 
 .user-message {
-  margin: 0;
-}
-
-.user-name {
-  color: blue;
-  font-weight: 600;
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #212121;
 }
 
 .logOut-btn {
-  background-color: #e53935;
-  color: #fff;
-  padding: 8px 16px;
+  color: #9B9FAA;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  font-family: Verdana;
   font-size: 14px;
-  display: flex;
-  justify-content: center;
-  margin-left: auto;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  position: relative;
 }
 
 .logOut-btn:hover {
-  background-color: #c62828;
+  cursor: pointer;
+  color: #FC842D;
 }
 
-.logOut-icon {
-  margin-left: 10px;
-  font-size: 16px;
+.logOut-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 150%;
+  background-color: #9B9FAA;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .user-menu {
+    background-color: transparent;
+  }
+
+  .logOut-btn {
+    background-color: transparent;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .user-menu {
+    background-color: transparent;
+  }
+
+  .logOut-btn {
+    background-color: transparent;
+  }
 }

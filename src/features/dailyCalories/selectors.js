@@ -8,3 +8,5 @@ export const selectIsLoading = (state) => state.dailyCalories.isLoading;
 
 export const selectModalIsOpen = (state) => state.dailyCalories.modalIsOpen;
 export const selectIsError = (state) => state.dailyCalories.isError;
+export const selectNonRecCategories = (state) =>
+  state.dailyCalories.nonRecCategories;

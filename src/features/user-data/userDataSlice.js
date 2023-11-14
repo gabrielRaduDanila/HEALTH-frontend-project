@@ -8,11 +8,11 @@ const initialState = {
   },
   nonRecCategories: [],
   isLoading: false,
-  modalIsOpen: false,
   isError: false,
+  modalIsOpen: false,
 };
 
-const dailyCaloriesSlice = createSlice({
+const userDataSlice = createSlice({
   name: 'dailyCalories',
   initialState,
   reducers: {
@@ -30,8 +30,8 @@ const dailyCaloriesSlice = createSlice({
       })
       .addCase(getDailyCalories.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.calories = action.payload.calories;
-        state.nonRecCategories = action.payload.nonRecCategories;
+        state.calories = action.payload.userInfo.calories;
+        state.nonRecCategories = action.payload.userInfo.nonRecCategories;
       })
       .addCase(getDailyCalories.rejected, (state, action) => {
         state.isError = true;
@@ -40,6 +40,6 @@ const dailyCaloriesSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal } = dailyCaloriesSlice.actions;
+export const { openModal, closeModal } = userDataSlice.actions;
 
-export default dailyCaloriesSlice.reducer;
+export default userDataSlice.reducer;

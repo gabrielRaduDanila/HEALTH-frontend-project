@@ -1,0 +1,113 @@
+.user-diet-info {
+  padding: 30px 20px;
+  background-color: rgba(240, 241, 243, 0.5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-info-title {
+  margin-bottom: 20px;
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #212121;
+}
+
+.daily-info {
+  list-style: none;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.daily-info-item {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #9B9FAA;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.info {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #9B9FAA;
+}
+
+.categ-item {
+  text-transform: capitalize;
+}
+
+.background-images-user {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.img-background {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.img-background {
+  background-image: url('../../assets/leaves.svg');
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .user-diet-info {
+    flex-direction: row;
+    gap: 70px;
+  }
+
+  .user-info-daily,
+  .user-categories {
+    width: 40%;
+  }
+
+  .img-background {
+    width: 706px;
+    height: 449px;
+    bottom: -108px;
+    right: -356px;
+  }
+
+}
+
+@media only screen and (min-width: 1024px) {
+  .user-diet-info {
+    gap: 40px;
+    flex-grow: 1;
+    margin-left: 40px;
+  }
+
+  .user-info-daily,
+  .user-categories {
+    width: 70%;
+  }
+
+  .img-background {
+    width: 618px;
+    height: 491px;
+    bottom: 87px;
+    right: -223px;
+    rotate: -80deg;
+  }
+}

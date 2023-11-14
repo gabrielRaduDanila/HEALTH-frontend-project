@@ -2,11 +2,11 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getDailyCalories = createAsyncThunk(
-  'dailyCalories/fetch',
+  'user-dailyCalories/fetch',
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post(
-        '/api/health/calculate-calories',
+        '/api/health/users/calculate-calories',
         credentials
       );
       return response.data;

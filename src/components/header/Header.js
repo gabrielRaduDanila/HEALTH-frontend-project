@@ -1,25 +1,61 @@
 import './Header.css';
 import logo from '../../assets/logo-header.svg';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { selectUserPage } from '../../features/auth/selectors';
+import { useSelector } from 'react-redux';
+import UserMenu from '../user-menu/UserMenu';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // const windowWidth = window.innerWidth;
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  const isUserPage = useSelector(selectUserPage);
   return (
-    <header>
-      <img src={logo} alt='logo' className='header-logo' />
-      {/* <Navigation /> */}
-      <UserInfo />
-    </header>
+    <>
+      <header>
+        <img
+          src={logo}
+          alt='logo'
+          className='header-logo'
+          onClick={handleLogoClick}
+        />
+        <p className='aplication-name' onClick={handleLogoClick}>
+          Slim<span className='aplication-name orange-colored'>Mom</span>
+        </p>
+        {!isUserPage && <Navigation />}
+        {windowWidth >= 768 && windowWidth < 1024 && isUserPage && <UserMenu />}
+        {isUserPage && <UserInfo />}
+        {windowWidth >= 1024 && isUserPage && <UserMenu />}
+      </header>
+      {windowWidth < 768 && isUserPage && <UserMenu />}
+    </>
   );
 };
 
 function Navigation() {
   return (
     <div className='user-btns'>
-      <NavLink className='user-btn' to='/log-in'>
+      <NavLink className='user-btn' to='users/login'>
         log in
       </NavLink>
-      <NavLink className='user-btn' to='/register'>
+      <NavLink className='user-btn' to='users/register'>
         Registration
       </NavLink>
     </div>
@@ -28,12 +64,19 @@ function Navigation() {
 
 function UserInfo() {
   return (
-    <div className='user-info'>
-      <p className='aplication-name'>
-        Slim<span className='aplication-name orange-colored'>Mom</span>
-      </p>
-      <GiHamburgerMenu className='header-menu' />
-    </div>
+    <>
+      <div className='user-info'>
+        <GiHamburgerMenu className='header-menu' />
+      </div>
+      <div className='user-info-desktop'>
+        <NavLink className='user-btn' to='/users/diary'>
+          DIARY
+        </NavLink>
+        <NavLink className='user-btn' to='/users/home-page'>
+          CALCULATOR
+        </NavLink>
+      </div>
+    </>
   );
 }
 

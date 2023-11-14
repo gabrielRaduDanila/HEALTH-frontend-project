@@ -1,15 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { getDailyCalories } from '../../features/dailyCalories/operations';
 import './HomePageForm.css';
-import Backgroud from '../backgroud/Backgroud';
+import Notiflix from 'notiflix';
 
-const HomePageForm = () => {
-  const dispatch = useDispatch();
+const HomePageForm = ({ handleDispatch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const form = e.currentTarget; // Accesează formularul curent
-
+    const form = e.currentTarget;
     const height = form.querySelector('input[name="height"]').value;
     const age = form.querySelector('input[name="age"]').value;
     const currentWeight = form.querySelector(
@@ -22,6 +17,17 @@ const HomePageForm = () => {
     const selectedBloodType = form.querySelector(
       'input[name="bloodType"]:checked'
     ).value;
+
+    if (
+      !height ||
+      !age ||
+      !currentWeight ||
+      !desiredWeight ||
+      !selectedBloodType
+    ) {
+      return Notiflix.Notify.failure('Please add all your details');
+    }
+
     const credentials = {
       height,
       age,
@@ -29,11 +35,11 @@ const HomePageForm = () => {
       desiredWeight,
       bloodType: selectedBloodType,
     };
-    dispatch(getDailyCalories(credentials));
+    handleDispatch(credentials);
   };
   return (
     <main>
-      <h2 className='form-title'>
+      <h2 className='form-title calculator-title'>
         Calculate your daily calorie intake right now
       </h2>
       <form onSubmit={handleSubmit} className='home-page-form'>
@@ -43,6 +49,7 @@ const HomePageForm = () => {
             name='height'
             placeholder='Height *'
             className='form-input'
+            required
           />
         </label>
 
@@ -52,6 +59,7 @@ const HomePageForm = () => {
             name='age'
             placeholder='Age *'
             className='form-input'
+            required
           />
         </label>
 
@@ -61,6 +69,7 @@ const HomePageForm = () => {
             name='currentWeight'
             placeholder='Current Weight *'
             className='form-input'
+            required
           />
         </label>
 
@@ -70,6 +79,7 @@ const HomePageForm = () => {
             name='desiredWeight'
             placeholder='Desired Weight *'
             className='form-input'
+            required
           />
         </label>
         <div className='radio-container'>
@@ -81,6 +91,7 @@ const HomePageForm = () => {
                 name='bloodType'
                 value='1'
                 className='blood-input'
+                defaultChecked
               />
               <div className='customRadio'></div>1
             </label>
@@ -120,7 +131,6 @@ const HomePageForm = () => {
           Start losing weight
         </button>
       </form>
-      <Backgroud />
     </main>
   );
 };

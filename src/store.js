@@ -14,21 +14,23 @@ import storage from 'redux-persist/lib/storage';
 import loadingReducer from './features/loading/loadingSlice';
 import dailyCaloriesReducer from './features/dailyCalories/dailyCaloriesSlice';
 import { authReducer } from './features/auth/authSlice';
+import userDataReducer from './features/user-data/userDataSlice';
 // import modalReducer from './features/modal/modalSlice';
 
-// const persistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['token'],
-// };
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
-// const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    // auth: persistedAuthReducer,
+    auth: persistedAuthReducer,
     loading: loadingReducer,
     dailyCalories: dailyCaloriesReducer,
+    userData: userDataReducer,
     // modal: modalReducer,
   },
 

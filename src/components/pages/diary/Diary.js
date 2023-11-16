@@ -1,0 +1,6 @@
+import './Diary.css';
+
+const Diary = () => {
+  return <div>Diary</div>;
+};
+export default Diary;

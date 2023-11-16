@@ -1,0 +1,29 @@
+.user-modal {
+  position: absolute;
+  top: 88px;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background: #264061;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 90px;
+  gap: 30px;
+}
+
+.user-modal-btn {
+  font-family: Verdana;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  color: #9B9FAA;
+}
+
+.active {
+  color: #FFFFFF;
+}

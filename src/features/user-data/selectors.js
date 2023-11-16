@@ -10,3 +10,7 @@ export const selectIsError = (state) => state.userData.isError;
 
 export const selectNonRecCategories = (state) =>
   state.userData.nonRecCategories;
+
+export const selectDailyInfo = (state) => state.userData.dailyInfo;
+
+export const selectUserModal = (state) => state.userData.userModalIsOpen;

@@ -1,17 +1,19 @@
 import { useSelector } from 'react-redux';
 import './UserInfo.css';
 import { useUserData } from '../../hooks/useUserData';
+import { useEffect } from 'react';
 
 const UserInfo = () => {
-  const state = useSelector((state) => state.userData);
-  console.log(state);
-  const {
-    neededCaloriesForDesiredWeight,
-    isLoading,
-    isError,
-    nonRecCategories,
-  } = useUserData();
+  // const state = useSelector((state) => state.userData);
+  // console.log(state);
+  const { neededCaloriesForDesiredWeight, nonRecCategories, dailyInfo } =
+    useUserData();
+  const { totalDayCaloris: consumedCalories } = dailyInfo;
   const date = new Date().toLocaleDateString();
+  const leftCaloriesDisplay = neededCaloriesForDesiredWeight - consumedCalories;
+  const relativeCaloricRatio = consumedCalories
+    ? (consumedCalories * 100) / neededCaloriesForDesiredWeight
+    : 100;
 
   return (
     <div className='user-diet-info'>
@@ -21,17 +23,17 @@ const UserInfo = () => {
         </h3>
         <ul className='daily-info'>
           <li className='daily-info-item'>
-            Left <span>0000 kcal</span>
+            Left <span>{leftCaloriesDisplay || '0000'} kcal</span>
           </li>
           <li className='daily-info-item'>
-            Consumed <span>0000 kcal</span>
+            Consumed <span>{consumedCalories || '0000'} kcal</span>
           </li>
           <li className='daily-info-item'>
             Daily rate{' '}
             <span>{neededCaloriesForDesiredWeight || '0000'} kcal</span>
           </li>
           <li className='daily-info-item'>
-            n% of normal <span>0000 kcal</span>
+            n% of normal <span>{relativeCaloricRatio || '0000'} kcal</span>
           </li>
         </ul>
       </div>

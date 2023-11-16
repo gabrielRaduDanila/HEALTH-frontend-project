@@ -59,6 +59,7 @@
   left: 0;
   top: 0;
   z-index: -1;
+  overflow: hidden;
 }
 
 .img-background {
@@ -95,7 +96,7 @@
   .user-diet-info {
     gap: 40px;
     flex-grow: 1;
-    margin-left: 40px;
+    width: 50%;
   }
 
   .user-info-daily,

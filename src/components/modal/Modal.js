@@ -1,20 +1,44 @@
 import './Modal.css';
 import '../home-page-form/HomePageForm.css';
-
+import { closeModal } from '../../features/dailyCalories/dailyCaloriesSlice';
+import { useDispatch } from 'react-redux';
 import ModalMobileMenu from '../modal-mobile-menu/ModalMobileMenu';
-import Header from '../header/Header';
 import { useDailyCalories } from '../../hooks/useDailyCalories';
 import { Link } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
 
 const Modal = () => {
   const { neededCaloriesForDesiredWeight, nonRecCategories } =
     useDailyCalories();
+  const dispatch = useDispatch();
+  const modalRef = useRef();
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        dispatch(closeModal());
+      }
+    };
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        dispatch(closeModal());
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [dispatch]);
 
   return (
     <aside className='modal-container'>
-      <div className='modal'>
-        <Header />
-        <ModalMobileMenu />
+      <div className='modal' ref={modalRef}>
+        <div className='mobile-menu-container'>
+          <ModalMobileMenu />
+        </div>
         <div className='modal-content'>
           <h2 className='form-title'>
             Your recommended daily calorie intake is

@@ -40,6 +40,11 @@ header {
   font-size: 16px;
   color: #212121;
   text-transform: capitalize;
+
+}
+
+.hide-class {
+  display: none;
 }
 
 .orange-colored {
@@ -50,18 +55,30 @@ header {
   display: none;
 }
 
+.header-menu:hover {
+  cursor: pointer;
+  color: #FC842D;
+}
+
+.active {
+  color: #212121
+}
+
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* .user-info {
-    margin-left: auto;
-    flex-grow: 1;
-  } */
+  .aplication-name {
+    display: flex;
+  }
 
 }
 
 @media only screen and (min-width: 1024px) {
   .header-menu {
     display: none;
+  }
+
+  .aplication-name {
+    display: flex;
   }
 
   .user-info-desktop {

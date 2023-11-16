@@ -3,10 +3,16 @@ import logo from '../../assets/logo-header.svg';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoClose } from 'react-icons/io5';
 import { selectUserPage } from '../../features/auth/selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import UserMenu from '../user-menu/UserMenu';
 import { useNavigate } from 'react-router-dom';
+import { selectUserModal } from '../../features/user-data/selectors';
+import {
+  openUserModal,
+  closeUserModal,
+} from '../../features/user-data/userDataSlice';
 
 const Header = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -20,25 +26,12 @@ const Header = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  const navigate = useNavigate();
-
-  const handleLogoClick = () => {
-    navigate('/');
-  };
 
   const isUserPage = useSelector(selectUserPage);
   return (
     <>
       <header>
-        <img
-          src={logo}
-          alt='logo'
-          className='header-logo'
-          onClick={handleLogoClick}
-        />
-        <p className='aplication-name' onClick={handleLogoClick}>
-          Slim<span className='aplication-name orange-colored'>Mom</span>
-        </p>
+        <HeaderLogo />
         {!isUserPage && <Navigation />}
         {windowWidth >= 768 && windowWidth < 1024 && isUserPage && <UserMenu />}
         {isUserPage && <UserInfo />}
@@ -48,6 +41,31 @@ const Header = () => {
     </>
   );
 };
+
+function HeaderLogo() {
+  const navigate = useNavigate();
+  const userModal = useSelector(selectUserModal);
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  return (
+    <>
+      <img
+        src={logo}
+        alt='logo'
+        className='header-logo'
+        onClick={handleLogoClick}
+      />
+      <p
+        className={`aplication-name ${!userModal ? 'hide-class' : ''}`}
+        onClick={handleLogoClick}
+      >
+        Slim<span className='aplication-name orange-colored'>Mom</span>
+      </p>
+    </>
+  );
+}
 
 function Navigation() {
   return (
@@ -63,10 +81,30 @@ function Navigation() {
 }
 
 function UserInfo() {
+  const userModal = useSelector(selectUserModal);
+  const state = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(openUserModal());
+  };
+
+  const handleClose = () => {
+    dispatch(closeUserModal());
+  };
+
   return (
     <>
       <div className='user-info'>
-        <GiHamburgerMenu className='header-menu' />
+        {!userModal && (
+          <GiHamburgerMenu className='header-menu' onClick={handleClick} />
+        )}
+        {userModal && (
+          <IoClose
+            style={{ width: 25, height: 25 }}
+            className='header-menu'
+            onClick={handleClose}
+          />
+        )}
       </div>
       <div className='user-info-desktop'>
         <NavLink className='user-btn' to='/users/diary'>

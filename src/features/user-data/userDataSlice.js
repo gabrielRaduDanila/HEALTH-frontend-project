@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDailyCalories } from './operations';
+import { getDailyCalories, getDailyInfo } from './operations';
 
 const initialState = {
   calories: {
@@ -9,18 +9,23 @@ const initialState = {
   nonRecCategories: [],
   isLoading: false,
   isError: false,
-  modalIsOpen: false,
+  userModalIsOpen: false,
+  dailyInfo: {
+    totalProducts: 0,
+    totalDayCaloris: 0,
+    dayProducts: [],
+  },
 };
 
 const userDataSlice = createSlice({
   name: 'dailyCalories',
   initialState,
   reducers: {
-    openModal: (state) => {
-      state.modalIsOpen = true;
+    openUserModal: (state) => {
+      state.userModalIsOpen = true;
     },
-    closeModal: (state) => {
-      state.modalIsOpen = false;
+    closeUserModal: (state) => {
+      state.userModalIsOpen = false;
     },
   },
   extraReducers: (builder) => {
@@ -36,10 +41,21 @@ const userDataSlice = createSlice({
       .addCase(getDailyCalories.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
+      })
+      .addCase(getDailyInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getDailyInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.dailyInfo = action.payload;
+      })
+      .addCase(getDailyInfo.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
       });
   },
 });
 
-export const { openModal, closeModal } = userDataSlice.actions;
+export const { openUserModal, closeUserModal } = userDataSlice.actions;
 
 export default userDataSlice.reducer;

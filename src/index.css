@@ -16,10 +16,6 @@ code {
     monospace;
 }
 
-.active {
-  color: #212121
-}
-
 .loading-container {
   width: 100vw;
   height: 100vh;

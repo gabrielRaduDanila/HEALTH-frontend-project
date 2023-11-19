@@ -11,6 +11,11 @@ const initialState = {
   errorMessage: null,
   userPage: false,
   visibleBackBtn: false,
+  calories: {
+    neededCalories: null,
+    neededCaloriesForDesiredWeight: null,
+  },
+  nonRecCategories: [],
 };
 
 const authSlice = createSlice({
@@ -54,7 +59,11 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        const { user } = action.payload;
+        state.user.name = user.name;
+        state.user.email = user.email;
+        state.nonRecCategories = user.nonRecCategories;
+        state.calories = user.calories;
         state.isLoggedIn = true;
         state.userPage = true;
         state.isRefreshing = false;

@@ -5,10 +5,9 @@ import { PrivateRoute } from './PrivateRoute';
 import { refreshUser } from '../features/auth/operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-// import { useAuth } from '../hooks';
+import { useAuth } from '../hooks';
 import SharedLayout from './shared-layout/SharedLayout';
-// import Loading from './loading/Loading';
-import { useSelector } from 'react-redux';
+import Loading from './loading/Loading';
 
 const HomePage = lazy(() => import('./pages/home-page/HomePage'));
 const Register = lazy(() => import('./pages/register/Register'));
@@ -17,19 +16,21 @@ const UsersHomePage = lazy(() =>
   import('./pages/users-home-page/UsersHomePage')
 );
 const Diary = lazy(() => import('./pages/diary/Diary'));
-// const Contacts = lazy(() => import('./pages/contacts/Contacts'));
 const ErrorPage = lazy(() => import('./pages/error-page/ErrorPage'));
 
 export const App = () => {
-  // const state = useSelector((state) => state.auth);
-  // console.log(state);
-  // const { isRefreshing } = useAuth();
+  const { isRefreshing } = useAuth();
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <div className='loading-container'>
+      <Loading />
+    </div>
+  ) : (
     <Routes>
       <Route path='/' element={<SharedLayout />}>
         <Route

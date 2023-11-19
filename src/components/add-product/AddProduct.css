@@ -1,0 +1,122 @@
+.add-product-form-container {
+  width: 90%;
+}
+
+.add-product-form {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-product-form label {
+  width: 100%;
+  max-width: 400px;
+}
+
+.product-input {
+  border: none;
+  border-bottom: 1px solid #E0E0E0;
+  height: 40px;
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #212121;
+  width: 100%;
+}
+
+.product-input:focus,
+.product-input:active {
+  outline: none;
+
+}
+
+.product-input::placeholder {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #9B9FAA;
+}
+
+.add-btn {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #FC842D;
+  background-color: #FC842D;
+  border-radius: 50%;
+  box-shadow: rgba(252, 132, 45, 0.5);
+  color: #FFFFFF;
+  font-size: 30px;
+  margin-left: 30px;
+}
+
+.mobile-add-btn {
+  padding: 13px 46px;
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  background-color: #FC842D;
+  border: 1px solid #FC842D;
+  border-radius: 20px;
+  max-width: 176px;
+}
+
+.mobile-add-btn:hover {
+  cursor: pointer;
+  box-shadow: rgba(252, 132, 45, 0.5);
+}
+
+.finded-products {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.finded-products li:hover {
+  cursor: pointer;
+  color: #9B9FAA;
+}
+
+@media only screen and (min-width: 768px) {
+  .add-product-form {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .product-name-input {
+    width: 250px;
+  }
+
+  .product-grams {
+    width: 106px;
+  }
+
+  .add-btn {
+    display: block;
+  }
+
+  .mobile-add-btn {
+    display: none;
+  }
+
+  .add-product-form label {
+    width: fit-content;
+  }
+}

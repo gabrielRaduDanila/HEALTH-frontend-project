@@ -82,7 +82,6 @@ function Navigation() {
 
 function UserInfo() {
   const userModal = useSelector(selectUserModal);
-  const state = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(openUserModal());

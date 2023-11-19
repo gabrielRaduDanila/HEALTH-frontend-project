@@ -1,7 +1,3 @@
-// import { useAuth } from 'hooks';
-// import { useLoadingAndError } from 'hooks/useLoadingAndError';
-// import ErrorMessage from 'components/error-message/ErrorMessage';
-
 import { useDispatch } from 'react-redux';
 import LoadingSpinner from '../../loading-spinner/LoadingSpinner';
 import './HomePage.css';
@@ -11,6 +7,7 @@ import Modal from '../../modal/Modal';
 import { getDailyCalories } from '../../../features/dailyCalories/operations';
 import { openModal } from '../../../features/dailyCalories/dailyCaloriesSlice';
 import Backgroud from '../../backgroud/Backgroud';
+import ErrorMessage from '../../error-message/ErrorMessage';
 
 const HomePage = () => {
   const { isLoading, modalIsOpen, isError } = useDailyCalories();
@@ -26,6 +23,7 @@ const HomePage = () => {
       <HomePageForm handleDispatch={handleSubmit} />
       {modalIsOpen && <Modal />}
       <Backgroud />
+      {isError && <ErrorMessage />}
     </>
   );
 };

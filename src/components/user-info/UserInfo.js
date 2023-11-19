@@ -1,15 +1,22 @@
 import { useSelector } from 'react-redux';
 import './UserInfo.css';
 import { useUserData } from '../../hooks/useUserData';
-import { useEffect } from 'react';
+import { useDiary } from '../../hooks/useUserDiary';
+import {
+  selectNonRecCategories,
+  selectNeededCaloriesForDesiredWeight,
+} from '../../features/auth/selectors';
 
 const UserInfo = () => {
-  // const state = useSelector((state) => state.userData);
-  // console.log(state);
-  const { neededCaloriesForDesiredWeight, nonRecCategories, dailyInfo } =
-    useUserData();
+  const { date } = useDiary();
+  const userDate = date ? new Date(date) : new Date();
+  const { dailyInfo } = useUserData();
+  const neededCaloriesForDesiredWeight = useSelector(
+    selectNeededCaloriesForDesiredWeight
+  );
+  const nonRecCategories = useSelector(selectNonRecCategories);
   const { totalDayCaloris: consumedCalories } = dailyInfo;
-  const date = new Date().toLocaleDateString();
+  const displayDate = userDate.toLocaleDateString();
   const leftCaloriesDisplay = neededCaloriesForDesiredWeight - consumedCalories;
   const relativeCaloricRatio = consumedCalories
     ? (consumedCalories * 100) / neededCaloriesForDesiredWeight
@@ -19,21 +26,24 @@ const UserInfo = () => {
     <div className='user-diet-info'>
       <div className='user-info-daily'>
         <h3 className='user-info-title'>
-          Summary for {date.replace(/\//g, '.')}
+          Summary for {displayDate.replace(/\//g, '.')}
         </h3>
         <ul className='daily-info'>
           <li className='daily-info-item'>
-            Left <span>{leftCaloriesDisplay || '0000'} kcal</span>
+            Left <span>{leftCaloriesDisplay.toFixed(2) || '0000'} kcal</span>
           </li>
           <li className='daily-info-item'>
-            Consumed <span>{consumedCalories || '0000'} kcal</span>
+            Consumed <span>{consumedCalories.toFixed(2) || '0000'} kcal</span>
           </li>
           <li className='daily-info-item'>
             Daily rate{' '}
-            <span>{neededCaloriesForDesiredWeight || '0000'} kcal</span>
+            <span>
+              {neededCaloriesForDesiredWeight.toFixed(2) || '0000'} kcal
+            </span>
           </li>
           <li className='daily-info-item'>
-            n% of normal <span>{relativeCaloricRatio || '0000'} kcal</span>
+            n% of normal{' '}
+            <span>{relativeCaloricRatio.toFixed(2) || '0000'} kcal</span>
           </li>
         </ul>
       </div>

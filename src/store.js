@@ -15,7 +15,7 @@ import loadingReducer from './features/loading/loadingSlice';
 import dailyCaloriesReducer from './features/dailyCalories/dailyCaloriesSlice';
 import { authReducer } from './features/auth/authSlice';
 import userDataReducer from './features/user-data/userDataSlice';
-// import modalReducer from './features/modal/modalSlice';
+import userDiaryReducer from './features/user-diary/diarySlice';
 
 const persistConfig = {
   key: 'auth',
@@ -31,7 +31,7 @@ export const store = configureStore({
     loading: loadingReducer,
     dailyCalories: dailyCaloriesReducer,
     userData: userDataReducer,
-    // modal: modalReducer,
+    userDiary: userDiaryReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

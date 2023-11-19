@@ -45,6 +45,15 @@
   background-color: #9B9FAA;
 }
 
+.back-btn {
+  border: none;
+  margin-right: auto;
+}
+
+.back-btn:hover {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .user-menu {
     background-color: transparent;

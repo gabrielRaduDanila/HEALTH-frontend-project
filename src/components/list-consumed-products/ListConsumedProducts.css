@@ -1,0 +1,46 @@
+.day-products-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.day-products-list-item {
+  display: flex;
+  gap: 20px;
+}
+
+.day-products-list .product-list-item {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  min-height: fit-content;
+}
+
+.name-product {
+  width: 40%;
+  max-width: 250px;
+  overflow: hidden;
+}
+
+.weight-product,
+.calories-product {
+  width: 15%;
+  max-width: 106px;
+  flex-shrink: 1;
+}
+
+.delete-btn {
+  border: none;
+  background-color: transparent;
+  color: #9B9FAA;
+  font-weight: 600;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+  color: #FC842D;
+}

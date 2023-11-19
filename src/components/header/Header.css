@@ -60,10 +60,13 @@ header {
   color: #FC842D;
 }
 
-.active {
+.user-info-desktop .active {
   color: #212121
 }
 
+.user-btns .active {
+  color: #212121
+}
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .aplication-name {

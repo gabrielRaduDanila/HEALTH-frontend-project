@@ -1,5 +1,6 @@
 main {
   padding: 20px;
+  overflow: auto;
 }
 
 .form-title {

@@ -1,0 +1,97 @@
+.selected-date {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.display-selected-date {
+  font-family: Verdana;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #212121;
+}
+
+.diary-main {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.calendar-icon:hover {
+  cursor: pointer;
+}
+
+.hide-on-mobile {
+  display: none;
+}
+
+.hide-on-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.open-menu-btn {
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  width: 48px;
+  height: 48px;
+  background-color: #FC842D;
+  border: 1px solid #FC842D;
+  border-radius: 50%;
+
+}
+
+.open-menu-btn:hover {
+  cursor: pointer;
+  box-shadow: rgba(252, 132, 45, 0.5);
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+
+  .hide-on-mobile {
+    display: block;
+  }
+
+  .hide-on-desktop {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+  .hide-on-mobile {
+    display: block;
+  }
+
+  .hide-on-desktop {
+    display: none;
+  }
+
+  .diary-page {
+    display: flex;
+  }
+
+  .user-info-container {
+    width: 35%;
+  }
+
+  .diary-main {
+    flex-grow: 2;
+  }
+
+  .user-info-container .user-diet-info {
+    width: 100%;
+  }
+}

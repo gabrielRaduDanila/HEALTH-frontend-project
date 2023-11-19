@@ -2,11 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getDailyCalories, getDailyInfo } from './operations';
 
 const initialState = {
-  calories: {
-    neededCalories: null,
-    neededCaloriesForDesiredWeight: null,
-  },
-  nonRecCategories: [],
   isLoading: false,
   isError: false,
   userModalIsOpen: false,
@@ -26,6 +21,12 @@ const userDataSlice = createSlice({
     },
     closeUserModal: (state) => {
       state.userModalIsOpen = false;
+    },
+    deleteProduct: (state, action) => {
+      const { _id } = action.payload;
+      state.dailyInfo.dayProducts = state.dailyInfo.dayProducts.filter(
+        (p) => p._id !== _id
+      );
     },
   },
   extraReducers: (builder) => {
@@ -56,6 +57,7 @@ const userDataSlice = createSlice({
   },
 });
 
-export const { openUserModal, closeUserModal } = userDataSlice.actions;
+export const { openUserModal, closeUserModal, deleteProduct } =
+  userDataSlice.actions;
 
 export default userDataSlice.reducer;

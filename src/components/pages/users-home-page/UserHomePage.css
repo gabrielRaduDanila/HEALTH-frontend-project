@@ -8,4 +8,8 @@
     flex-direction: row;
   }
 
+  .user-home-page main {
+    width: 60%;
+  }
+
 }
